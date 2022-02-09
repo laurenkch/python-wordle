@@ -32,24 +32,30 @@ def display_guess(guess, word, available_letters):
     guess: string, the word the user guesses
     word: string, the correct word
     available_letters: string, all unused letters
-    return: the guessed word. correctly placed letters will be green, correct letters in the wrong place are yellow, incorrect letters are gray. 
+    correct_letters: string, a sum of all correct letters. used to determine if additional letters should be yellow or gray. 
+   
+    return: the guessed word(string). Correctly placed letters will be green, correct letters in the wrong place are yellow, incorrect letters are gray. 
     '''
 
     guess_display = ''
+    correct_letters = ''
+    for index, letter in enumerate(guess):
+        if guess[index] == word[index]:
+            correct_letters += letter
+
     for index, letter in enumerate(guess):
         if guess[index] == word[index]:
             guess_display += f"{green}{letter}{end_color}"
-        elif letter in word:
+        elif letter in word and correct_letters.count(letter) < word.count(letter):
             guess_display += f"{yellow}{letter}{end_color}"
-        else:
-            guess_display += letter
+        else: 
+            guess_display+= letter
             if letter in available_letters:
                 available_letters.remove(letter)
     return guess_display
 
 word_list = load_words()
 word = choose_word(word_list)
-# print(word_list)
     
 def wordle(word):
     '''
