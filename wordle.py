@@ -55,8 +55,8 @@ def display_guess(guess, word, available_letters):
     return guess_display
 
 word_list = load_words()
-# word = choose_word(word_list)
-word = 'dread'
+word = choose_word(word_list)
+
     
 def wordle(word):
     '''
