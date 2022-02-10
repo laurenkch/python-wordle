@@ -46,7 +46,7 @@ def display_guess(guess, word, available_letters):
     for index, letter in enumerate(guess):
         if guess[index] == word[index]:
             guess_display += f"{green}{letter}{end_color}"
-        elif letter in word and correct_letters.count(letter) < word.count(letter):
+        elif letter in word and (correct_letters.count(letter) + guess_display.count(letter)) < word.count(letter):
             guess_display += f"{yellow}{letter}{end_color}"
         else: 
             guess_display+= letter
@@ -55,7 +55,8 @@ def display_guess(guess, word, available_letters):
     return guess_display
 
 word_list = load_words()
-word = choose_word(word_list)
+# word = choose_word(word_list)
+word = 'dread'
     
 def wordle(word):
     '''
